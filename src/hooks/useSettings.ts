@@ -3,6 +3,8 @@ import { getSettings, loadStaticData, saveSettings } from '../db'
 import type { BlogSettings } from '../types'
 import { DEFAULT_SETTINGS } from '../types'
 
+const SETTINGS_CHANGED_EVENT = 'flowwrite-settings-changed'
+
 export function useSettings() {
   const [settings, setSettings] = useState<BlogSettings>(DEFAULT_SETTINGS)
   const [loading, setLoading] = useState(true)
@@ -39,12 +41,19 @@ export function useSettings() {
     void init()
   }, [refresh])
 
+  useEffect(() => {
+    const handleSettingsChanged = () => void refresh()
+    window.addEventListener(SETTINGS_CHANGED_EVENT, handleSettingsChanged)
+    return () => window.removeEventListener(SETTINGS_CHANGED_EVENT, handleSettingsChanged)
+  }, [refresh])
+
   const update = useCallback(
     async (next: BlogSettings) => {
       try {
         setError(null)
         await saveSettings(next)
         setSettings(next)
+        window.dispatchEvent(new CustomEvent(SETTINGS_CHANGED_EVENT))
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Erro ao salvar')
         throw err

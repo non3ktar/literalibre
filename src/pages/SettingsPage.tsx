@@ -177,7 +177,6 @@ export function SettingsPage() {
 
   return (
     <SettingsForm
-      key={`${settings.title}-${settings.author}-${settings.subtitle}`}
       settings={settings}
       posts={posts}
       refresh={refresh}
