@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getSettings, loadStaticData, saveSettings } from '../db'
+import { db, getSettings, loadStaticData, saveSettings } from '../db'
 import type { BlogSettings } from '../types'
 import { DEFAULT_SETTINGS } from '../types'
 
@@ -27,8 +27,8 @@ export function useSettings() {
       try {
         const { settings: staticSettings } = await loadStaticData()
         if (staticSettings) {
-          const current = await getSettings()
-          if (current.title === DEFAULT_SETTINGS.title) {
+          const row = await db.settings.get('main')
+          if (!row) {
             await saveSettings({ ...DEFAULT_SETTINGS, ...staticSettings })
           }
         }
