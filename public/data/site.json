@@ -1,0 +1,23 @@
+{
+  "settings": {
+    "title": "LiteraLibre",
+    "subtitle": "Um blog minimalista, sem distrações — inspirado no WriteFreely.",
+    "author": "Sérgio",
+    "bio": "Professor, pedagogo e desenvolvedor focado em educação.",
+    "language": "pt-BR",
+    "postsPerPage": 10
+  },
+  "posts": [
+    {
+      "id": "demo-bem-vindo",
+      "slug": "bem-vindo-ao-flowwrite",
+      "title": "Bem-vindo ao FlowWrite",
+      "content": "# Olá, mundo!\n\nEste é um **clone minimalista** do [WriteFreely](https://writefreely.org) — feito para rodar em qualquer hospedagem estática.\n\n## O que você pode fazer\n\n- Escrever posts em **Markdown**\n- Salvar rascunhos no navegador (Dexie.js)\n- Publicar com um clique\n- Exportar `site.json` para deploy no **Netlify** ou **GitHub Pages**\n\n## Comece agora\n\nClique em **Escrever** no menu e crie seu primeiro post. A interface foi pensada para não distrair — só você e suas palavras.\n\n> \"A escrita é a pintura da voz.\" — Voltaire\n\nBoa escrita!",
+      "excerpt": "Este é um clone minimalista do WriteFreely — feito para rodar em qualquer hospedagem estática.",
+      "published": true,
+      "createdAt": 1740000000000,
+      "updatedAt": 1740000000000,
+      "tags": ["intro", "blog"]
+    }
+  ]
+}

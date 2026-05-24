@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Lora", Georgia, serif;
+  --color-surface: hsl(220 18% 8%);
+  --color-surface-raised: hsl(220 16% 12%);
+  --color-border: hsl(220 14% 20%);
+  --color-muted: hsl(220 10% 55%);
+  --color-accent: hsl(195 80% 52%);
+  --color-accent-soft: hsl(195 60% 52% / 0.15);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  min-height: 100dvh;
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: hsl(220 15% 92%);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: hsl(195 90% 85%);
+}
+
+.prose-write h1,
+.prose-write h2,
+.prose-write h3 {
+  font-family: var(--font-serif);
+  text-wrap: balance;
+  color: hsl(220 15% 96%);
+}
+
+.prose-write p,
+.prose-write li {
+  text-wrap: pretty;
+  line-height: 1.75;
+  color: hsl(220 12% 78%);
+}
+
+.prose-write a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-write code {
+  font-size: 0.9em;
+  padding: 0.15em 0.4em;
+  background: hsl(220 14% 16%);
+}
+
+.prose-write pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background: hsl(220 14% 10%);
+  border: 1px solid var(--color-border);
+}
+
+.prose-write blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1rem;
+  color: hsl(220 10% 65%);
+  font-style: italic;
+}
+
+.glass {
+  background: hsl(220 16% 12% / 0.72);
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(220 14% 22% / 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
