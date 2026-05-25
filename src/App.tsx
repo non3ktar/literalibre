@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { HomePage } from './pages/HomePage'
 import { PostPage } from './pages/PostPage'
@@ -13,10 +13,15 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="p/:slug" element={<PostPage />} />
-          <Route path="write" element={<EditorPage />} />
-          <Route path="write/:id" element={<EditorPage />} />
-          <Route path="drafts" element={<DraftsPage />} />
-          <Route path="settings" element={<SettingsPage />} />
+          {import.meta.env.DEV && (
+            <>
+              <Route path="write" element={<EditorPage />} />
+              <Route path="write/:id" element={<EditorPage />} />
+              <Route path="drafts" element={<DraftsPage />} />
+              <Route path="settings" element={<SettingsPage />} />
+            </>
+          )}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </HashRouter>

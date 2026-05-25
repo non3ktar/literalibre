@@ -5,9 +5,13 @@ import { cn } from '../lib/cn'
 
 const nav = [
   { to: '/', label: 'Blog', icon: Home },
-  { to: '/write', label: 'Escrever', icon: PenLine },
-  { to: '/drafts', label: 'Rascunhos', icon: FileText },
-  { to: '/settings', label: 'Config', icon: Settings },
+  ...(import.meta.env.DEV
+    ? [
+        { to: '/write', label: 'Escrever', icon: PenLine },
+        { to: '/drafts', label: 'Rascunhos', icon: FileText },
+        { to: '/settings', label: 'Config', icon: Settings },
+      ]
+    : []),
 ]
 
 export function Header() {
