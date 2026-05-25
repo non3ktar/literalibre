@@ -16,6 +16,28 @@ type SettingsFormProps = {
   update: ReturnType<typeof useSettings>['update']
 }
 
+function GuiaPublicacao() {
+  if (!import.meta.env.DEV) return null
+
+  return (
+    <div className="mb-8 rounded-2xl bg-[hsl(195_60%_15%)] p-6 border border-[hsl(195_50%_30%)] shadow-lg">
+      <h2 className="text-lg font-semibold text-[hsl(195_70%_75%)] mb-4 flex items-center gap-2">
+        <span>🚀</span> Guia de Publicação Rápida
+        <span className="ml-auto text-xs px-2 py-1 bg-[hsl(195_60%_30%)] rounded-full text-[hsl(195_80%_85%)]">
+          Visível apenas para você (Local)
+        </span>
+      </h2>
+      <ol className="list-decimal list-inside space-y-3 text-sm text-[hsl(195_30%_85%)] leading-relaxed">
+        <li>Vá na aba <strong>Escrever</strong>, digite seu post e clique em <strong>Publicar</strong>.</li>
+        <li>Aqui nas Configurações (logo abaixo), clique em <strong>Exportar site.json</strong>.</li>
+        <li>Substitua o arquivo antigo na pasta do seu projeto em: <code className="bg-[hsl(195_60%_10%)] px-1.5 py-0.5 rounded text-[hsl(195_70%_70%)]">public/data/site.json</code> pelo novo arquivo baixado.</li>
+        <li>No terminal, dentro da pasta do projeto, envie pro GitHub e rode: <code className="bg-[hsl(195_60%_10%)] px-1.5 py-0.5 rounded font-bold text-[hsl(150_60%_70%)]">npm run publicar</code></li>
+      </ol>
+    </div>
+  )
+}
+
+
 function SettingsForm({ settings, posts, refresh, update }: SettingsFormProps) {
   const [form, setForm] = useState(settings)
   const [saving, setSaving] = useState(false)
@@ -70,6 +92,8 @@ function SettingsForm({ settings, posts, refresh, update }: SettingsFormProps) {
   return (
     <div className="mx-auto max-w-xl px-4 py-12 sm:px-6">
       <h1 className="font-serif text-3xl font-semibold text-balance mb-8">Configurações</h1>
+
+      <GuiaPublicacao />
 
       {error && (
         <p className="mb-4 rounded-lg border border-[hsl(0_50%_40%)] bg-[hsl(0_40%_15%)] px-4 py-3 text-sm">
